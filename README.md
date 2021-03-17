@@ -1,3 +1,7 @@
+# fn-impl-reg
+use function implement regular expression
+
+```js
 // a
 const alpha = (ch) => (str, index, succ, fail) =>
   ch === str[index] ? succ(str, index + 1) : fail(str, index);
@@ -19,9 +23,6 @@ const kleene = (m) => (str, index, succ, fail) =>
 // $
 const end = () => (str, index, succ, fail) =>
   str.length === index ? succ(str, index) : fail(str, index);
-
-
-
 
 
 // for test
@@ -58,3 +59,22 @@ test(
   "ababcabcabcd",
   "ababcabcabcdf",
 );
+
+```
+output 
+
+
+```
+==test: /^ab(abc)*(d|e)f?$/ =================================
+ababcabcabc
+           ^   --fail
+ababcabcabce
+            ^   --success
+ababcabcabcf
+           ^   --fail
+ababcabcabcd
+            ^   --success
+ababcabcabcdf
+             ^   --success
+=================================================
+```
